@@ -1,307 +1,121 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0f766e" />
-  <title>乳房外科臨床助手｜新人 SOP 快速上手</title>
-  <style>
-    :root{
-      --bg:#f4f8f7;--surface:#ffffff;--surface-2:#eef7f5;--ink:#16302c;--muted:#6b7d79;
-      --line:#dce9e6;--brand:#0f766e;--brand-2:#155e75;--warn:#b45309;--danger:#b42318;
-      --shadow:0 18px 50px rgba(26,70,63,.10);--radius:22px;
-    }
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;background:linear-gradient(180deg,#eff7f5 0,#f8fbfa 340px,var(--bg) 100%);color:var(--ink);line-height:1.7}
-    a{color:inherit;text-decoration:none}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}
-    .hero{padding:54px 0 34px}.eyebrow{display:inline-flex;gap:8px;align-items:center;padding:7px 12px;border-radius:999px;background:#dff3ef;color:#0f615a;font-size:13px;font-weight:800;letter-spacing:.04em}
-    h1{font-size:clamp(34px,5vw,62px);line-height:1.06;margin:18px 0 14px;letter-spacing:-.04em;max-width:850px}.lead{font-size:18px;color:#526965;max-width:800px;margin:0}.hero-grid{display:grid;grid-template-columns:1.5fr .8fr;gap:22px;align-items:stretch;margin-top:30px}
-    .hero-card,.card,.panel{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.hero-card{padding:26px}.hero-card h2,.card h2{margin:0 0 10px;font-size:22px}.hero-card p{margin:4px 0;color:var(--muted)}
-    .alert{border-left:5px solid var(--danger);background:#fff7f6}.alert strong{color:var(--danger)}
-    .mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}.metric{padding:14px;border-radius:16px;background:var(--surface-2);border:1px solid #dbeee9}.metric b{display:block;font-size:18px}.metric span{font-size:13px;color:var(--muted)}
-    .sticky{position:sticky;top:0;z-index:20;background:rgba(247,250,249,.88);backdrop-filter:blur(16px);border-top:1px solid rgba(220,233,230,.6);border-bottom:1px solid var(--line)}.nav{display:flex;gap:8px;overflow:auto;padding:10px 0;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}.nav a{white-space:nowrap;padding:9px 13px;border-radius:999px;color:#506762;font-size:14px;font-weight:750}.nav a:hover{background:#e7f3f0;color:var(--brand)}
-    main{padding:30px 0 70px}.section{scroll-margin-top:74px;margin:26px 0}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:14px}.section-head h2{margin:0;font-size:27px;letter-spacing:-.02em}.section-head p{margin:0;color:var(--muted);font-size:14px}
-    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{padding:22px;box-shadow:none}.card h3{margin:0 0 8px;font-size:19px}.card p{margin:5px 0;color:var(--muted)}.tag{display:inline-block;padding:4px 9px;border-radius:999px;background:#e7f3f0;color:#176b62;font-size:12px;font-weight:800;margin:3px 4px 3px 0}.tag.orange{background:#fff3df;color:#9a5a00}.tag.red{background:#ffebe8;color:#a6362b}.tag.blue{background:#e8f3fa;color:#135f78}
-    .step{display:flex;gap:15px;padding:15px 0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}.num{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex:0 0 34px;background:#dff3ef;color:#0b655d;font-weight:900}.step h4{margin:0 0 3px;font-size:16px}.step p{margin:0;color:var(--muted);font-size:14px}
-    ul.clean{margin:8px 0 0;padding-left:20px}.clean li{margin:5px 0}.danger-box{background:#fff5f3;border:1px solid #ffd3cd;border-radius:18px;padding:18px}.danger-box h3{color:var(--danger);margin-top:0}.warning-box{background:#fff9ed;border:1px solid #f4dfb8;border-radius:18px;padding:18px}.warning-box h3{color:var(--warn);margin-top:0}
-    details{background:#fff;border:1px solid var(--line);border-radius:18px;padding:0 18px;margin:10px 0}summary{cursor:pointer;font-weight:850;padding:17px 0;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}summary::-webkit-details-marker{display:none}summary::after{content:"＋";color:var(--brand);font-size:20px}details[open] summary::after{content:"－"}.detail-body{border-top:1px solid var(--line);padding:14px 0 18px;color:#4f6661}.detail-body strong{color:var(--ink)}
-    .checklist{display:grid;gap:9px}.check{display:flex;gap:11px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:#f8fbfa;border:1px solid var(--line)}.check input{margin-top:5px;width:17px;height:17px;accent-color:var(--brand)}.check span{font-size:14px}.check.done span{text-decoration:line-through;color:#879691}
-    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.search{flex:1;min-width:220px;border:1px solid var(--line);background:#fff;padding:13px 15px;border-radius:14px;font-size:15px;outline:none}.search:focus{border-color:#7ebeb5;box-shadow:0 0 0 4px #dff3ef}.btn{border:0;border-radius:14px;padding:12px 15px;font-weight:800;cursor:pointer;background:#e4f2ef;color:#12685f}.btn:hover{filter:brightness(.98)}
-    .ref-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.ref{background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px}.ref b{display:block}.ref span{color:var(--muted);font-size:13px}.ref.hide{display:none}
-    table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);vertical-align:top}th{color:#57706a;background:#f6faf9;position:sticky;top:56px}code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#edf4f2;padding:2px 6px;border-radius:6px}
-    .timeline{position:relative;padding-left:18px}.timeline::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:#cae4de}.tl{position:relative;padding:0 0 18px 24px}.tl::before{content:"";position:absolute;left:-16px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px #dff3ef}.tl h4{margin:0 0 4px}.tl p,.tl li{color:var(--muted);font-size:14px}
-    .footer{border-top:1px solid var(--line);padding:28px 0 50px;color:var(--muted);font-size:13px}.footer strong{color:var(--ink)}
-    .top-btn{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border:0;border-radius:50%;background:#123f39;color:white;box-shadow:var(--shadow);cursor:pointer;display:none}
-    @media(max-width:900px){.hero-grid,.grid-2,.grid-3{grid-template-columns:1fr}.ref-grid{grid-template-columns:repeat(2,1fr)}.section-head{display:block}.section-head p{margin-top:4px}.hero{padding-top:34px}}
-    @media(max-width:560px){.wrap{width:min(100% - 20px,1180px)}.hero-card,.card{padding:18px}.mini-grid,.ref-grid{grid-template-columns:1fr}h1{font-size:38px}.lead{font-size:16px}.nav a{font-size:13px;padding:8px 10px}th{top:52px}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f766e">
+<title>乳房外科臨床助手｜新人 SOP</title>
+<style>
+:root{--bg:#f3f7f6;--card:#fff;--ink:#17332f;--muted:#6d7f7b;--line:#dce9e6;--brand:#0f766e;--brand2:#155e75;--red:#b42318;--orange:#a65d00;--shadow:0 14px 38px rgba(25,68,62,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--ink);background:linear-gradient(180deg,#eaf5f2 0,#f7faf9 430px,var(--bg) 100%);line-height:1.7}a{color:inherit}.wrap{width:min(1180px,calc(100% - 28px));margin:auto}
+.hero{padding:52px 0 30px}.badge{display:inline-block;background:#dcefeb;color:#0e675f;padding:7px 12px;border-radius:999px;font-weight:800;font-size:12px;letter-spacing:.05em}.hero h1{font-size:clamp(36px,5vw,64px);line-height:1.06;letter-spacing:-.045em;margin:17px 0 13px}.hero p{max-width:820px;color:#55706b;font-size:17px;margin:0}.hero-grid,.grid2,.grid3{display:grid;gap:16px}.hero-grid{grid-template-columns:1.35fr .85fr;margin-top:28px}.grid2{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:repeat(3,1fr)}
+.card,.hero-card,details{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:20px}.hero-card{padding:24px;box-shadow:var(--shadow)}.card{padding:20px}.alert{border-left:5px solid var(--red);background:#fff8f7}.alert strong{color:var(--red)}
+.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.metric{padding:13px;border-radius:15px;background:#edf7f4;border:1px solid #d8ebe6}.metric b{display:block}.metric small{color:var(--muted)}
+.sticky{position:sticky;top:0;z-index:20;background:rgba(248,251,250,.9);backdrop-filter:blur(15px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.nav{display:flex;gap:7px;overflow:auto;padding:9px 0;scrollbar-width:none}.nav a{text-decoration:none;white-space:nowrap;padding:8px 11px;border-radius:999px;font-weight:750;color:#58706b;font-size:13px}.nav a:hover{background:#e4f2ef;color:var(--brand)}
+main{padding:28px 0 65px}.section{scroll-margin-top:70px;margin:26px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:13px}.section-head h2{font-size:27px;margin:0;letter-spacing:-.02em}.section-head p{margin:0;color:var(--muted);font-size:13px}.card h3{margin:0 0 7px}.card p{color:var(--muted);margin:5px 0}.clean{margin:8px 0;padding-left:20px}.clean li{margin:5px 0}
+.step{display:flex;gap:13px;padding:13px 0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}.num{flex:0 0 32px;width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:#dcefeb;color:#0c665d;font-weight:900}.step h4{margin:0 0 2px}.step p{font-size:14px;margin:0;color:var(--muted)}
+.tag{display:inline-block;padding:4px 8px;border-radius:999px;background:#e5f2ef;color:#17675f;font-size:11px;font-weight:850;margin:2px}.tag.red{background:#ffebe8;color:#a6372d}.tag.orange{background:#fff1d9;color:#936000}.tag.blue{background:#e8f3fa;color:#155c74}
+.warn,.danger{border-radius:17px;padding:17px}.warn{background:#fff9ed;border:1px solid #f1dfb7}.danger{background:#fff5f3;border:1px solid #f3d0ca}.warn h3{color:var(--orange);margin-top:0}.danger h3{color:var(--red);margin-top:0}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:13px}.search{flex:1;min-width:240px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff;font-size:15px;outline:none}.search:focus{border-color:#7fbeb5;box-shadow:0 0 0 4px #dcefeb}.btn{border:0;border-radius:13px;background:#e2f1ed;color:#0d675e;font-weight:800;padding:11px 14px;cursor:pointer}
+.table-wrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:18px}table{width:100%;border-collapse:collapse;min-width:820px;font-size:14px}th,td{padding:12px 13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{position:sticky;top:0;background:#f1f8f6;color:#4f6863}tr:last-child td{border-bottom:0}.empty{padding:22px;text-align:center;color:var(--muted);display:none}
+.checklist{display:grid;gap:8px}.check{display:flex;gap:10px;align-items:flex-start;padding:11px 13px;background:#f8fbfa;border:1px solid var(--line);border-radius:13px}.check input{margin-top:5px;width:17px;height:17px;accent-color:var(--brand)}.check.done span{text-decoration:line-through;color:#8a9895}
+details{padding:0 17px;margin:9px 0}summary{cursor:pointer;list-style:none;font-weight:850;padding:15px 0;display:flex;justify-content:space-between;gap:10px}summary::-webkit-details-marker{display:none}summary::after{content:"＋";color:var(--brand);font-size:20px}details[open] summary::after{content:"－"}.detail{border-top:1px solid var(--line);padding:13px 0 17px;color:#506964}.detail b{color:var(--ink)}
+.code-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.code{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px}.code b{display:block}.code small{color:var(--muted)}
+.source-note{font-size:12px;color:var(--muted);margin-top:11px}.source-note a{color:var(--brand);font-weight:800}.footer{border-top:1px solid var(--line);padding:25px 0 45px;color:var(--muted);font-size:12px}.top{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border:0;border-radius:50%;background:#173f39;color:#fff;box-shadow:var(--shadow);cursor:pointer;display:none}
+@media(max-width:900px){.hero-grid,.grid2,.grid3{grid-template-columns:1fr}.code-grid{grid-template-columns:repeat(2,1fr)}.section-head{display:block}.section-head p{margin-top:4px}}
+@media(max-width:560px){.wrap{width:min(100% - 18px,1180px)}.hero{padding-top:32px}.hero h1{font-size:39px}.metrics,.code-grid{grid-template-columns:1fr}.hero-card,.card{padding:17px}}
+</style>
 </head>
 <body>
-  <header class="hero">
-    <div class="wrap">
-      <span class="eyebrow">BREAST SURGERY · CLINICAL ASSISTANT SOP</span>
-      <h1>新人第一天，就知道<br>先做什麼、哪裡不能錯</h1>
-      <p class="lead">乳房外科臨床助手快速上手頁。依現有院內 Knowledge 整理工作流程、Orders 核對、常用代碼與手術 SOP；遇到新版文件，以最新院內資料為準。</p>
-      <div class="hero-grid">
-        <div class="hero-card">
-          <h2>今天先記住 4 件事</h2>
-          <div class="mini-grid">
-            <div class="metric"><b>先分新／舊病人</b><span>決定 Admission Note 的建立方式</span></div>
-            <div class="metric"><b>院內 SOP 優先</b><span>不要用一般知識自行覆蓋</span></div>
-            <div class="metric"><b>所有內容皆為 DRAFT</b><span>正式醫囑必須由醫療人員確認</span></div>
-            <div class="metric"><b>有不一致就標示</b><span>Plan、Order、Regimen 不一致須回報</span></div>
-          </div>
-        </div>
-        <div class="hero-card alert">
-          <h2>⚠ 醫療安全底線</h2>
-          <p><strong>不可自行判定</strong>健保核准、事前審查通過、藥物適用、病人可接受治療或特定劑量一定正確。</p>
-          <p>遇 BSA / 體重 / AUC 計算，可以協助計算，但一定要列出輸入、公式與結果，再請醫療人員核對。</p>
-        </div>
-      </div>
-    </div>
-  </header>
+<header class="hero"><div class="wrap">
+<span class="badge">BREAST SURGERY · CLINICAL ASSISTANT</span>
+<h1>新人第一天<br>就知道先做什麼</h1>
+<p>乳房外科臨床助手快速上手頁。院內 SOP、Regimen、Order、Workflow 與最新提供文件優先；本頁用於流程與文件整理，不取代臨床判斷。</p>
+<div class="hero-grid">
+<div class="hero-card"><h2>先記住 4 件事</h2><div class="metrics">
+<div class="metric"><b>先分新／舊病人</b><small>決定 Admission Note 處理方式</small></div>
+<div class="metric"><b>院內資料優先</b><small>不可自行用一般知識覆蓋</small></div>
+<div class="metric"><b>所有內容皆為 DRAFT</b><small>正式醫囑由醫療人員確認</small></div>
+<div class="metric"><b>有不一致就標示</b><small>Plan、Order、Regimen 必須核對</small></div>
+</div></div>
+<div class="hero-card alert"><h2>⚠ 醫療安全底線</h2><p><strong>不可自行判定</strong>健保已核准、事前審查通過、藥物一定適用、病人一定可以治療或特定劑量一定正確。</p><p>BSA、weight、AUC 等計算可協助，但必須列出輸入、公式與結果，再核對正式醫囑。</p></div>
+</div></div></header>
 
-  <div class="sticky">
-    <nav class="wrap nav">
-      <a href="#start">新人先看</a><a href="#patients">新／舊病人</a><a href="#daily">每日核對</a><a href="#orders">Orders</a><a href="#regimen">Regimen</a><a href="#surgery">手術 SOP</a><a href="#codes">常用代碼</a><a href="#admin">健保／行政</a><a href="#safety">安全規則</a>
-    </nav>
-  </div>
+<div class="sticky"><nav class="wrap nav">
+<a href="#start">新人先看</a><a href="#patients">新／舊病人</a><a href="#chemo">化療套餐</a><a href="#daily">每日核對</a><a href="#orders">Orders</a><a href="#surgery">手術 SOP</a><a href="#codes">常用代碼</a><a href="#safety">安全規則</a>
+</nav></div>
 
-  <main class="wrap">
-    <section class="section" id="start">
-      <div class="section-head"><div><h2>01｜新人先看</h2><p>碰到任何臨床工作，先照這個順序</p></div></div>
-      <div class="grid-2">
-        <div class="card">
-          <div class="step"><span class="num">1</span><div><h4>確認這次是新病人還是舊病人</h4><p>新病人用標準 Admission Template；舊病人先拿上一份 Admission Note。</p></div></div>
-          <div class="step"><span class="num">2</span><div><h4>確認本次最新版資料</h4><p>本次最新 SOP / Regimen / Order / Workflow 優先，再看 Knowledge Database。</p></div></div>
-          <div class="step"><span class="num">3</span><div><h4>完成資料核對才建立草稿</h4><p>診斷、Regimen、Course、日期、BSA、禁治療側、Port、骨轉移或內分泌治療等。</p></div></div>
-          <div class="step"><span class="num">4</span><div><h4>最後做 discrepancy check</h4><p>Admission Plan 與實際 Order 不一致時，明確標示並要求確認。</p></div></div>
-        </div>
-        <div class="danger-box">
-          <h3>新人最容易犯的錯</h3>
-          <ul class="clean">
-            <li>舊病人重新打一整份 Plan，造成格式與內容前後不一致。</li>
-            <li>看到熟悉藥物就用一般醫療知識「自動修正」院內資料。</li>
-            <li>把 Order Library 的內容直接塞進 Admission Note。</li>
-            <li>只寫 Day 3 / Day 4，沒有換算 G-CSF 的實際注射日期。</li>
-            <li>未再次核對禁治療側、Port、Course、日期、劑量與輸注方式。</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+<main class="wrap">
+<section class="section" id="start"><div class="section-head"><div><h2>01｜新人先看</h2><p>任何臨床工作先照這個順序</p></div></div><div class="grid2">
+<div class="card">
+<div class="step"><span class="num">1</span><div><h4>確認新病人或舊病人</h4><p>新病人使用標準 Admission Template；舊病人先拿上一份 Admission Note。</p></div></div>
+<div class="step"><span class="num">2</span><div><h4>確認本次最新資料</h4><p>本次最新 SOP / Regimen / Order / Workflow ＞ Knowledge ＞ Previous Plan ＞ 一般醫療知識。</p></div></div>
+<div class="step"><span class="num">3</span><div><h4>完成必要資料核對</h4><p>診斷、Regimen、Course、日期、BSA、體重、禁治療側、Port、Denosumab、Zoladex、內分泌治療。</p></div></div>
+<div class="step"><span class="num">4</span><div><h4>做 discrepancy check</h4><p>Admission Plan 與實際 Order 不一致時明確標示，交由醫療人員確認。</p></div></div>
+</div>
+<div class="danger"><h3>新人常見錯誤</h3><ul class="clean"><li>舊病人重新建立整份 Plan，導致前後格式不一致</li><li>把 Order Library 內容直接塞入 Admission Note</li><li>看到熟悉藥物就自行修正院內資料</li><li>只寫 G-CSF Day 3 / Day 4，未換算實際日期</li><li>漏核對禁治療側、Course、Port、日期、輸注方式</li></ul></div>
+</div></section>
 
-    <section class="section" id="patients">
-      <div class="section-head"><div><h2>02｜新病人 vs 舊病人</h2><p>這是整個工作流程的第一個分岔點</p></div></div>
-      <div class="grid-2">
-        <div class="card">
-          <span class="tag">NEW PATIENT</span>
-          <h3>新病人</h3>
-          <p>使用標準 Admission Template，不從零開始自由撰寫。</p>
-          <ul class="clean">
-            <li>診斷</li><li>Regimen / Course / 化療日期</li><li>BSA（必要時計算）與體重</li><li>禁治療側</li><li>是否有 Port</li><li>是否需要 Denosumab / Zoladex</li><li>是否持續 AI、Tamoxifen 等內分泌治療</li>
-          </ul>
-          <p><strong>資料確認後</strong>再依對應 Regimen 產生 Admission Plan 草稿。</p>
-        </div>
-        <div class="card">
-          <span class="tag blue">RETURNING PATIENT</span>
-          <h3>舊病人</h3>
-          <p>第一步不是重做，而是先拿到上一份 Admission Note。</p>
-          <ul class="clean">
-            <li>沿用既有 Plan 與格式</li><li>更新 Course</li><li>更新日期</li><li>更新 BSA / 劑量</li><li>更新檢查結果</li><li>更新臨床狀況</li>
-          </ul>
-          <p><strong>原則：</strong>盡量維持病歷格式與內容一致性。</p>
-        </div>
-      </div>
-    </section>
+<section class="section" id="patients"><div class="section-head"><div><h2>02｜新病人 vs 舊病人</h2><p>工作流程第一個分岔</p></div></div><div class="grid2">
+<div class="card"><span class="tag">NEW PATIENT</span><h3>新病人</h3><p>使用標準 Admission Template 建立草稿，不從零自由撰寫。</p><ul class="clean"><li>診斷、Regimen、Course、化療日期</li><li>BSA／體重（需要時）</li><li>禁治療側、Port-A</li><li>Denosumab、Zoladex</li><li>是否持續 AI、Tamoxifen 等內分泌治療</li></ul></div>
+<div class="card"><span class="tag blue">OLD PATIENT</span><h3>舊病人</h3><p>優先取得上一份 Admission Note，沿用既有 Plan。</p><ul class="clean"><li>只更新 Course</li><li>日期</li><li>BSA／劑量</li><li>檢查結果</li><li>臨床狀況</li></ul><div class="warn"><b>重點：</b>避免重新建立整份 Admission Plan。</div></div>
+</div></section>
 
-    <section class="section" id="daily">
-      <div class="section-head"><div><h2>03｜每日工作核對</h2><p>可直接打勾，完成狀態會保留在本機</p></div><button class="btn" id="resetChecks">重設 Checklist</button></div>
-      <div class="grid-2">
-        <div class="card checklist" id="checklist">
-          <label class="check"><input type="checkbox"><span>確認新病人／舊病人</span></label>
-          <label class="check"><input type="checkbox"><span>確認 Diagnosis / Regimen / Course / 日期</span></label>
-          <label class="check"><input type="checkbox"><span>確認 BSA、體重與需依計算之劑量</span></label>
-          <label class="check"><input type="checkbox"><span>確認禁治療側與 Port-A</span></label>
-          <label class="check"><input type="checkbox"><span>確認是否需 Denosumab / Zoladex / 內分泌治療</span></label>
-          <label class="check"><input type="checkbox"><span>確認 Pre / Chemo / Post-chemo 與特殊醫囑是否一致</span></label>
-          <label class="check"><input type="checkbox"><span>確認 G-CSF 是否需要、代碼與實際日期</span></label>
-          <label class="check"><input type="checkbox"><span>最後比對 Admission Plan 與 Orders</span></label>
-        </div>
-        <div class="warning-box">
-          <h3>碰到資料缺漏時</h3>
-          <p>不要自己猜。Knowledge 沒有涵蓋的內容要明確指出；兩份院內文件互相衝突時，優先使用日期較新或使用者明確指定的版本。無法判斷時，交由醫療人員確認。</p>
-          <p><strong>資料優先順序：</strong><br>本次最新 SOP / Regimen / Order / Workflow → Knowledge Database → Previous Admission Note / Plan → 一般醫療知識。</p>
-        </div>
-      </div>
-    </section>
+<section class="section" id="chemo"><div class="section-head"><div><h2>03｜化療套餐快速查詢</h2><p>來源：化療藥物套餐對照表 · 2026-09-16 同步</p></div></div>
+<div class="card">
+<div class="toolbar"><input class="search" id="chemoSearch" placeholder="搜尋 T-DXd、TCH、Paclitaxel、Pembrolizumab…"><button class="btn" id="clearChemo">清除</button></div>
+<div class="table-wrap"><table><thead><tr><th>Plan 內容</th><th>化學治療套餐 1</th><th>選擇藥物</th><th>化學治療套餐 2</th><th>選擇藥物</th></tr></thead><tbody id="chemoBody"></tbody></table><div id="noChemo" class="empty">找不到相符套餐，請回原始院內資料確認</div></div>
+<p class="source-note">此區僅忠實呈現目前 Google Sheet 內容，不代表套餐或藥物已確認可正式開立。<a href="https://docs.google.com/spreadsheets/d/1SXVzExM2cnbWYYT-NqpVlxiakqNCZQTpOshbmxpKLKk/edit" target="_blank" rel="noopener">開啟原始對照表 ↗</a></p>
+</div></section>
 
-    <section class="section" id="orders">
-      <div class="section-head"><div><h2>04｜Order Library 與醫囑核對</h2><p>Order Library 是核對工具，不是 Admission Note 內容</p></div></div>
-      <div class="grid-3">
-        <div class="card"><h3>Order Library 何時使用</h3><p>只有在需要「開立醫囑草稿、檢查醫囑、列出今日 Orders、核對醫令」時使用。</p></div>
-        <div class="card"><h3>每筆 Order 要保存</h3><p>醫令代碼、藥名、劑量、給藥途徑、頻率、Instruction、備註、所屬 Regimen。</p></div>
-        <div class="card"><h3>院內代碼前綴</h3><p><code>O</code>＝口服 PO<br><code>I</code>＝注射 IV / IVD / SC / IM<br><code>T</code>＝外用藥</p><p>可用來檢查格式是否合理，但不能直接判定醫囑正確。</p></div>
-      </div>
-      <details>
-        <summary>化療醫囑建立時的指定套餐</summary>
-        <div class="detail-body">
-          <ul class="clean">
-            <li><strong>T-DXd：</strong>[Palliative] T-DXd (Trastuzumab Deruxtecan)</li>
-            <li><strong>Lipodox + Cyclophosphamide：</strong>[Neoadjuvant] EC (Lipodox)</li>
-            <li><strong>Sacituzumab govitecan：</strong>[Palliative] Sacituzumab govitecan</li>
-            <li><strong>Pembrolizumab + Paclitaxel + Carboplatin：</strong>分別建立三個套餐</li>
-          </ul>
-          <p>完成後再次確認所有藥物、劑量、輸注速度、內容是否與 Admission Plan 一致，再正式開立醫囑。</p>
-        </div>
-      </details>
-      <details>
-        <summary>G-CSF 核對</summary>
-        <div class="detail-body">
-          <p><strong>現有 Knowledge：</strong><code>ILEN2</code> = Lenograstim；文件記錄為 G-CSF 1 vial (250 mcg/vial) SC for 2 days after chemotherapy, day 3 and day 4。</p>
-          <p>需依化療日期換算實際注射日期，並確認是否遺漏、醫令代碼是否正確、注射日期是否一致。</p>
-        </div>
-      </details>
-    </section>
+<section class="section" id="daily"><div class="section-head"><div><h2>04｜每日核對 Checklist</h2><p>勾選狀態會保存在目前裝置</p></div><button class="btn" id="resetChecks">重設</button></div><div class="grid2">
+<div class="card"><h3>Admission / Plan</h3><div class="checklist" data-group="daily">
+<label class="check"><input type="checkbox"><span>確認新病人／舊病人</span></label><label class="check"><input type="checkbox"><span>確認診斷、Regimen、Course 與日期</span></label><label class="check"><input type="checkbox"><span>確認 BSA、體重與需計算劑量</span></label><label class="check"><input type="checkbox"><span>確認禁治療側與 Port-A</span></label><label class="check"><input type="checkbox"><span>確認 Denosumab / Zoladex / endocrine therapy</span></label></div></div>
+<div class="card"><h3>Orders / 最後確認</h3><div class="checklist" data-group="daily"><label class="check"><input type="checkbox"><span>套餐名稱與 Regimen 一致</span></label><label class="check"><input type="checkbox"><span>所有藥物、劑量、途徑、頻率與輸注速度再次核對</span></label><label class="check"><input type="checkbox"><span>若需 G-CSF，確認醫令代碼與實際注射日期</span></label><label class="check"><input type="checkbox"><span>Plan 與 Order 做 discrepancy check</span></label><label class="check"><input type="checkbox"><span>確認正式醫囑前由合格醫療人員核對</span></label></div></div>
+</div></section>
 
-    <section class="section" id="regimen">
-      <div class="section-head"><div><h2>05｜Regimen 快速索引</h2><p>先找到名稱，再回對應 Knowledge 核對完整藥物、劑量與特殊醫囑</p></div></div>
-      <div class="toolbar"><input id="regimenSearch" class="search" placeholder="搜尋 Regimen，例如 TCHP、Herceptin、Enhertu…"><button class="btn" id="clearSearch">清除</button></div>
-      <div class="ref-grid" id="regimenGrid">
-        <div class="ref" data-key="LC Lipodox Cyclophosphamide"><b>LC</b><span>Lipodox + Cyclophosphamide</span></div>
-        <div class="ref" data-key="LC+T Lipodox Cyclophosphamide Docetaxel"><b>LC+T</b><span>Lipodox + Cyclophosphamide + Docetaxel</span></div>
-        <div class="ref" data-key="TCHP Perjeta Herceptin Carboplatin Docetaxel"><b>TCHP</b><span>Perjeta + Herceptin + Carboplatin + Docetaxel</span></div>
-        <div class="ref" data-key="THP Perjeta Herceptin Docetaxel"><b>THP</b><span>Perjeta + Herceptin + Docetaxel</span></div>
-        <div class="ref" data-key="TCH Herceptin Carboplatin Docetaxel"><b>TCH</b><span>Docetaxel + Carboplatin + Herceptin</span></div>
-        <div class="ref" data-key="TH Docetaxel Herceptin"><b>TH</b><span>Docetaxel + Herceptin</span></div>
-        <div class="ref" data-key="TC Docetaxel Cyclophosphamide"><b>TC</b><span>Docetaxel + Cyclophosphamide</span></div>
-        <div class="ref" data-key="HP SC Perjeta Herceptin"><b>HP（SC）</b><span>Perjeta + Herceptin SC</span></div>
-        <div class="ref" data-key="HP IV biosimilar 癌吉清 Perjeta Herceptin"><b>HP（IV）</b><span>IV form / biosimilar</span></div>
-        <div class="ref" data-key="Herceptin Xeloda"><b>Herceptin + Xeloda</b><span>標靶 + 口服化療</span></div>
-        <div class="ref" data-key="Herceptin"><b>Herceptin</b><span>SC target therapy</span></div>
-        <div class="ref" data-key="Docetaxel"><b>Docetaxel</b><span>Adjuvant chemotherapy</span></div>
-        <div class="ref" data-key="Pertuzumab Herceptin Vinorelbine Letrozole"><b>PH + Vinorelbine + Letrozole</b><span>Target + endocrine</span></div>
-        <div class="ref" data-key="T-DM1 Kadcyla Trastuzumab Emtansine"><b>T-DM1 / Kadcyla</b><span>Every 3 weeks</span></div>
-        <div class="ref" data-key="EC Epirubicin Cyclophosphamide"><b>EC</b><span>Epirubicin + Cyclophosphamide</span></div>
-        <div class="ref" data-key="Letrozole Palbociclib"><b>Letrozole + Palbociclib</b><span>Endocrine + CDK4/6</span></div>
-        <div class="ref" data-key="Zoladex Letrozole Abemaciclib"><b>Zoladex + Letrozole + Abemaciclib</b><span>Endocrine + CDK4/6</span></div>
-        <div class="ref" data-key="Fulvestrant Ribociclib"><b>Fulvestrant + Ribociclib</b><span>Endocrine + CDK4/6</span></div>
-        <div class="ref" data-key="Enhertu AI Letrozole T-DXd"><b>Enhertu + AI</b><span>Enhertu + Letrozole</span></div>
-      </div>
-      <div class="warning-box" style="margin-top:14px"><strong>注意：</strong>此區只是索引，不代表最新治療準則，也不取代原始 Regimen Database。實際劑量、輸注速度、自費／贈藥註記、特殊護理指示都要回到最新版院內 Knowledge 再確認。</div>
-    </section>
+<section class="section" id="orders"><div class="section-head"><div><h2>05｜Order Library 使用規則</h2><p>只有開立／檢查醫囑時才使用</p></div></div><div class="grid2">
+<div class="card"><h3>Order Library 每筆保留</h3><p><span class="tag">醫令代碼</span><span class="tag">藥名</span><span class="tag">劑量</span><span class="tag">途徑</span><span class="tag">頻率</span><span class="tag">Instruction</span><span class="tag">Regimen</span></p><p>Order Library <b>不直接顯示於 Admission Note / Plan</b>，僅在開醫囑草稿、檢查醫囑、列今日 Orders、核對醫令時使用。</p></div>
+<div class="warn"><h3>G-CSF</h3><p>目前 Knowledge：<b>ILEN2 = Lenograstim</b>；紀錄為 GCSF 1 vial (250 mcg/vial) SC for 2 days after chemotherapy, day 3 and day 4。</p><p>使用時把 Day 3 / Day 4 換算成實際日期，並核對是否漏開、代碼及日期。</p></div>
+</div></section>
 
-    <section class="section" id="surgery">
-      <div class="section-head"><div><h2>06｜Endoscopic Simple Mastectomy + SLNB</h2><p>手術助手快速流程版</p></div></div>
-      <div class="grid-2">
-        <div class="card">
-          <h3>流程時間線</h3>
-          <div class="timeline">
-            <div class="tl"><h4>1. 材料與器械</h4><p>Jelly + methylblue、tumescent solution、鈍頭抽脂金屬管、加壓器、大 kupa 剪刀、深鉤、glove port、30° scope、sizer、funnel、沖洗液與縫線。</p></div>
-            <div class="tl"><h4>2. Mark / 拍照 / 消毒 / 擺位</h4><p>站立先畫 IMF、sternal notch、水平線、breast 內側；綠單背景拍照；chlorhexidine；雙側乳房消毒；必要時腋下除毛。</p></div>
-            <div class="tl"><h4>3. Mastectomy</h4><p>側胸腋中線或腋下約 5 cm；先 pre-muscle plane，再 simple；送 sub-nipple frozen；後續視野不足再轉 gas endoscopy。</p></div>
-            <div class="tl"><h4>4. Tumescent / Hydrodissection</h4><p>完成 superficial plane；以鈍頭側孔金屬管進水剝離，再以大 kupa 剪刀分離，放 glove port，兩支器械＋30° scope。</p></div>
-            <div class="tl"><h4>5. Specimen / SLNB</h4><p>breast tissue 取出後立即定位；同一傷口完成 SLNB。影像原已有淋巴轉移者送 frozen。</p></div>
-            <div class="tl"><h4>6. Reconstruction / Implant</h4><p>Dual plane、sizer、術中坐起評估、單條引流從腋下出、確認止血，再進 implant。</p></div>
-            <div class="tl"><h4>7. Closure / Post-op</h4><p>4-0 Vicryl、Monocryl 4-0、Liquiband；甦醒前穿術後衣；乳頭避免加壓。</p></div>
-          </div>
-        </div>
-        <div>
-          <div class="danger-box">
-            <h3>手術室高優先注意</h3>
-            <ul class="clean">
-              <li><strong>乳頭循環：</strong>術後衣胸前釦子解開，乳頭不要加壓。</li>
-              <li><strong>Breast specimen：</strong>取出後馬上定位，12 點兩線、3 點一線。</li>
-              <li><strong>SLNB positive：</strong>原 SOP 記錄改為 second stage reconstruction，先用 tissue expander。</li>
-              <li><strong>放 implant 前：</strong>清潔、換手套、沖洗、完全確認止血。</li>
-              <li><strong>Funnel：</strong>原始文件特別註記「不要剪開，我來剪」。</li>
-            </ul>
-          </div>
-          <details open><summary>Tumescent solution</summary><div class="detail-body"><strong>1000 cc N/S + 20 cc lidocaine + 1 cc epinephrine</strong><br>table 外開啟後掛點滴架，加輸血用加壓器，無菌接上注射管路。</div></details>
-          <details><summary>Antibiotic irrigation solution</summary><div class="detail-body"><strong>1000 cc Normal saline + 1 g Cefa + 80 mg Genta</strong><br>原 SOP 註記病房需開 anti 過來。</div></details>
-          <details><summary>Implant / Reconstruction 提醒</summary><div class="detail-body">Mentor 一代 memory gel；準備多尺寸 sizer；考慮 width（diameter）與 projection；術中可坐起比較外觀與大小。</div></details>
-        </div>
-      </div>
-    </section>
+<section class="section" id="surgery"><div class="section-head"><div><h2>06｜Endoscopic Simple Mastectomy + SLNB</h2><p>手術區快速 SOP</p></div></div>
+<details open><summary>術前 Mark / 拍照 / 消毒 / 擺位</summary><div class="detail"><ul class="clean"><li>站立時完成 mark：IMF、sternal notch、水平線、breast 內側</li><li>站立拍照，背景綠單</li><li>chlorhexidine 消毒，腋下有毛需除毛</li><li>雙側乳房消毒，消毒後重新畫清楚 mark</li><li>病人放最邊邊，單側墊脂肪墊，術中手臂可能調整開合</li></ul></div></details>
+<details><summary>器械與材料準備</summary><div class="detail"><ul class="clean"><li>Jelly + methylblue，無菌混合</li><li>Tumescent：1000cc N/S + 20cc lidocaine + 1cc epinephrine</li><li>側孔鈍頭抽脂金屬管、點滴加壓器、大 kupa 剪刀、深鉤</li><li>Glove port（病人自費），gas 約 8</li><li>電燒 spoon / hook、30° scope</li><li>無菌塑膠量筒、implant sizer、funnel</li><li>縫線：4-0 Vicryl、Monocryl 4-0；表皮 Liquiband</li></ul></div></details>
+<details><summary>Mastectomy / Tumescent / Hydrodissection</summary><div class="detail"><ul class="clean"><li>傷口約 5 cm，側胸腋中線或腋下</li><li>先做 pre-muscle plane，不打 tumescent</li><li>sub nipple frozen 優先送術中</li><li>superficial plane 前打 tumescent，hydrodissection 後以大 kupa 剪刀分離</li><li>open 視野不足後換 gas endoscopy</li></ul></div></details>
+<details><summary>Specimen / SLNB</summary><div class="detail"><ul class="clean"><li>breast tissue 取出後<b>立即定位</b>：12 點兩線、3 點一線</li><li>Table 下測量體積與重量；原始資料註記密度 0.9</li><li>同一傷口完成 SLNB；影像原本有淋巴轉移需送 frozen</li><li>術中使用放射線 navigator</li><li>若 SLNB positive：改 second stage reconstruction，先 tissue expander</li></ul></div></details>
+<details><summary>Reconstruction / Implant placement / Post-op</summary><div class="detail"><ul class="clean"><li>Dual plane，內視鏡分開胸大肌下緣；以尺量 breast width，使用 sizer 並讓病人術中坐起</li><li>引流管一條，由腋下出來；完全確認止血後決定 implant</li><li>放 implant 前清潔病人並換手套</li><li>Antibiotic irrigation：1000cc NS + 1g Cefa + 80mg Genta</li><li>若使用 funnel：原始 SOP 特別註記「不要剪開，我來剪」</li><li>甦醒前穿術後衣與定位衣；乳頭血循恢復期間胸前釦子解開，乳頭不可加壓</li></ul></div></details>
+</section>
 
-    <section class="section" id="codes">
-      <div class="section-head"><div><h2>07｜常用院內代碼</h2><p>快速查找，不等同正式醫囑</p></div></div>
-      <div class="card" style="overflow:auto">
-        <table>
-          <thead><tr><th>類別</th><th>代碼</th><th>內容</th><th>備註</th></tr></thead>
-          <tbody>
-            <tr><td>停經藥物</td><td><code>IZOLA</code></td><td>Zoladex / Goserelin acetate 3.6 mg/vial</td><td>依實際醫囑核對</td></tr>
-            <tr><td>CDK4/6</td><td><code>OABEM</code></td><td>Abemaciclib 200 mg</td><td>口服</td></tr>
-            <tr><td>CDK4/6</td><td><code>OABEM15</code></td><td>Abemaciclib 150 mg</td><td>口服</td></tr>
-            <tr><td>G-CSF</td><td><code>ILEN2</code></td><td>Lenograstim</td><td>需核對實際注射日期</td></tr>
-            <tr><td>檢查</td><td><code>33005B</code></td><td>Mammography</td><td>—</td></tr>
-            <tr><td>檢查</td><td><code>17006B</code></td><td>Lung function</td><td>—</td></tr>
-            <tr><td>自備藥</td><td><code>OPTSELF</code></td><td>開自備藥自服</td><td>並寫在註釋</td></tr>
-            <tr><td>止吐</td><td><code>OAPR8</code></td><td>Aprepitant 80 mg QD</td><td>原始筆記另有健保顆數註記</td></tr>
-            <tr><td>止吐</td><td><code>OGRAN</code></td><td>Granisetron 2 mg QD</td><td>—</td></tr>
-            <tr><td>外用</td><td><code>TSUSC5</code></td><td>燙傷藥膏 500 mg</td><td>—</td></tr>
-            <tr><td>外用</td><td><code>TUREA</code></td><td>Urea</td><td>手足</td></tr>
-            <tr><td>外用</td><td><code>TCBOS</code></td><td>C.B ointment</td><td>止癢</td></tr>
-            <tr><td>外用</td><td><code>TGENTA</code></td><td>Gentasone cream</td><td>甘德松</td></tr>
-            <tr><td>外用</td><td><code>TKENA</code></td><td>Kenalog Oral Gel / Triamcinolone</td><td>口內膏</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+<section class="section" id="codes"><div class="section-head"><div><h2>07｜常用院內代碼</h2><p>快速查找，不等同正式醫囑確認</p></div></div><div class="code-grid">
+<div class="code"><b>IZOLA</b><small>Zoladex / Goserelin acetate 3.6mg/vial</small></div><div class="code"><b>OABEM</b><small>Abemaciclib 200 mg</small></div><div class="code"><b>OABEM15</b><small>Abemaciclib 150 mg</small></div><div class="code"><b>ILEN2</b><small>Lenograstim / G-CSF</small></div><div class="code"><b>33005B</b><small>Mammography</small></div><div class="code"><b>17006B</b><small>Lung function</small></div><div class="code"><b>OPTSELF</b><small>自備藥自服</small></div><div class="code"><b>OAPR8</b><small>Aprepitant 80 mg QD</small></div><div class="code"><b>OGRAN</b><small>Granisetron 2 mg QD</small></div><div class="code"><b>TSUSC5</b><small>燙傷藥膏 500 mg</small></div><div class="code"><b>TUREA</b><small>Urea，for 手足</small></div><div class="code"><b>TKENA</b><small>Kenalog Oral Gel / Triamcinolone</small></div>
+</div></section>
 
-    <section class="section" id="admin">
-      <div class="section-head"><div><h2>08｜健保／贈藥／行政</h2><p>只協助整理，不自行判定資格或核准狀態</p></div></div>
-      <div class="grid-3">
-        <div class="card"><h3>健保／事前審查</h3><p>優先依院內事前審查流程；若 Plan 已註記 self pay，依自費流程整理。不可自行判定已核准或符合給付資格。</p></div>
-        <div class="card"><h3>贈藥／庫存</h3><p>即時庫存查詢路徑：<strong>warehouse → 藥劑科 → 即時庫存查詢</strong>。</p></div>
-        <div class="card"><h3>廠商贈藥</h3><p>原 Knowledge：聯絡藥局 <strong>266161</strong>；自備藥自服使用 <code>OPTSELF</code>，並寫在註釋。</p></div>
-      </div>
-    </section>
+<section class="section" id="safety"><div class="section-head"><div><h2>08｜資料優先順序與安全規則</h2><p>遇到不確定時，以這裡為準</p></div></div><div class="grid2">
+<div class="card"><h3>資料優先順序</h3><ol class="clean"><li><b>本次最新提供</b>的 SOP / Regimen / Order / Workflow</li><li>Knowledge Database 的院內文件</li><li>既有 Admission Note / Previous Plan</li><li>一般醫療知識</li></ol><p>兩份院內文件互相衝突時，優先日期較新或使用者明確指定版本；無法判斷則要求確認。</p></div>
+<div class="danger"><h3>所有輸出都是 DRAFT</h3><ul class="clean"><li>不得宣稱已正式開立醫囑</li><li>不得自行判定健保／事前審查已核准</li><li>不得自行判定特定藥物一定適用</li><li>不得自行判定病人一定可以接受治療</li><li>不得自行判定特定劑量一定正確</li><li>Plan 與 Order 不一致時要明確標示 discrepancy</li></ul></div>
+</div></section>
+</main>
 
-    <section class="section" id="safety">
-      <div class="section-head"><div><h2>09｜安全規則總表</h2><p>這一區是最後一道防線</p></div></div>
-      <div class="grid-2">
-        <div class="danger-box">
-          <h3>不得自行做的事</h3>
-          <ul class="clean">
-            <li>宣稱已正式開立醫囑</li>
-            <li>判定健保已核准／事前審查已通過</li>
-            <li>判定某藥物一定適用</li>
-            <li>判定病人一定可以接受治療</li>
-            <li>判定某個劑量一定正確</li>
-            <li>用一般醫療知識偷偷改掉院內 SOP</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>發現 discrepancy 時</h3>
-          <p>Admission Plan、Regimen、Order、護理指示或健保流程互相不一致時：</p>
-          <ol class="clean">
-            <li>明確標示不一致位置</li>
-            <li>列出目前看到的兩個版本</li>
-            <li>優先採用較新或被明確指定的院內文件</li>
-            <li>無法判斷時，不自行選答案，交由醫療人員確認</li>
-          </ol>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer"><div class="wrap"><strong>乳房外科臨床助手｜新人 SOP 快速上手</strong><br>本頁為既有院內 Knowledge 的導覽與工作輔助，並非最新治療準則，也不取代正式醫囑、臨床判斷或院內最新版文件。</div></footer>
-  <button class="top-btn" id="topBtn" aria-label="回到頂端">↑</button>
-
-  <script>
-    const checks=[...document.querySelectorAll('#checklist input')];
-    const key='doctor-onboarding-checks-v1';
-    const saved=JSON.parse(localStorage.getItem(key)||'[]');
-    checks.forEach((c,i)=>{c.checked=!!saved[i];c.parentElement.classList.toggle('done',c.checked);c.addEventListener('change',()=>{c.parentElement.classList.toggle('done',c.checked);localStorage.setItem(key,JSON.stringify(checks.map(x=>x.checked)));});});
-    document.getElementById('resetChecks').onclick=()=>{checks.forEach(c=>{c.checked=false;c.parentElement.classList.remove('done')});localStorage.removeItem(key)};
-
-    const search=document.getElementById('regimenSearch');
-    const refs=[...document.querySelectorAll('#regimenGrid .ref')];
-    function filterRefs(){const q=search.value.trim().toLowerCase();refs.forEach(el=>el.classList.toggle('hide',q&&!el.dataset.key.toLowerCase().includes(q)));}
-    search.addEventListener('input',filterRefs);document.getElementById('clearSearch').onclick=()=>{search.value='';filterRefs();search.focus()};
-
-    const topBtn=document.getElementById('topBtn');
-    addEventListener('scroll',()=>topBtn.style.display=scrollY>700?'block':'none');
-    topBtn.onclick=()=>scrollTo({top:0,behavior:'smooth'});
-  </script>
+<footer class="footer"><div class="wrap"><b>乳房外科臨床助手</b> · SOP / Knowledge 快速查詢頁<br>本頁用於院內流程與文件整理。所有治療、藥物、劑量、檢查及正式醫囑仍須由具資格之醫療人員確認。</div></footer>
+<button class="top" id="topBtn" aria-label="回到頂端">↑</button>
+<script>
+const chemoData=[
+["Docetaxel","[Adjuvant] TC","Docetaxel 80mg/4ml/vial","",""],
+["TCH (癌吉清Trastuzumab)","[Adjuvant] TCH","(剋癌易) Docetaxel 20mg/mL, Carboplastin 450mg/45/ml/vial","[Adjuvant] 癌吉清Trastuzumab (loading dose)","癌吉清Trastuzumab"],
+["TC (Docetaxel+ Cyclopphosphamide)","[Adjuvant] TC (東洋)","(鈦能) Docetaxel 80mg/4ml/vial, Cyclophosphamide 500mg","",""],
+["Paclitaxel","[Adjuvant] Paclitaxel Q3W(175*BSA)","Paclitaxel 6mg/ml","",""],
+["SG","[Palliative] Sacituzumab govitecan","Sacituzumab govitecan 180mg/vial","",""],
+["pembolizumab + paclitaxel + carboplatin","[Neoadjuvant] TH - Paclitaxel + HErceptin","paclitaxel 6mg/ml, carboplatin","[Adjuvant] Pembrolizumab 200mg FIXED dose","Pembrolizumab 100mg/4ml/vial"],
+["T-Dxd","[Palliative] T-Dxd (Trastuzumab Deruxtecan)","Trastuzumab Deruxtecan 100mg/vial","",""],
+["Lipodox + Cyclopphosphamide","[Neoadjuvant] EC (Lipodox)","(LIPO-DOX) Doxorubicin 20mg, Cyclophosphamide 500mg","",""]
+];
+const body=document.getElementById('chemoBody'),q=document.getElementById('chemoSearch'),empty=document.getElementById('noChemo');
+function esc(v){return String(v||'').replace(/[&<>"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[s]))}
+function renderChemo(){const term=q.value.trim().toLowerCase();const rows=chemoData.filter(r=>!term||r.join(' ').toLowerCase().includes(term));body.innerHTML=rows.map(r=>'<tr>'+r.map(c=>'<td>'+esc(c||'—')+'</td>').join('')+'</tr>').join('');empty.style.display=rows.length?'none':'block'}
+q.addEventListener('input',renderChemo);document.getElementById('clearChemo').onclick=()=>{q.value='';renderChemo();q.focus()};renderChemo();
+const boxes=[...document.querySelectorAll('.check input')];boxes.forEach((b,i)=>{b.checked=localStorage.getItem('doctor-check-'+i)==='1';b.closest('.check').classList.toggle('done',b.checked);b.onchange=()=>{localStorage.setItem('doctor-check-'+i,b.checked?'1':'0');b.closest('.check').classList.toggle('done',b.checked)}});document.getElementById('resetChecks').onclick=()=>{boxes.forEach((b,i)=>{b.checked=false;localStorage.removeItem('doctor-check-'+i);b.closest('.check').classList.remove('done')})};
+const topBtn=document.getElementById('topBtn');window.addEventListener('scroll',()=>topBtn.style.display=scrollY>500?'block':'none');topBtn.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+</script>
 </body>
 </html>
